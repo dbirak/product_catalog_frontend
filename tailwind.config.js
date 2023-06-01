@@ -8,20 +8,20 @@ module.exports = {
   },
   daisyui: {
     themes: [
-      {
-        // dark: {
-        //   primary: "#38bdf8",
-        //   secondary: "#818CF8",
-        //   accent: "#F471B5",
-        //   neutral: "#1E293B",
-        //   "neutral-focus": "#273449",
-        //   "base-100": "#0A0F1C",
-        //   info: "#0CA5E9",
-        //   success: "#2DD4BF",
-        //   warning: "#F4BF50",
-        //   error: "#FB7085",
-        // },
-      },
+      // {
+      //   dark: {
+      //     primary: "#38bdf8",
+      //     secondary: "#818CF8",
+      //     accent: "#F471B5",
+      //     neutral: "#1E293B",
+      //     "neutral-focus": "#273449",
+      //     "base-100": "#11141c",
+      //     info: "#0CA5E9",
+      //     success: "#2DD4BF",
+      //     warning: "#F4BF50",
+      //     error: "#FB7085",
+      //   },
+      // },
       {
         light: {
           primary: "#38bdf8",

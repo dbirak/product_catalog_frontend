@@ -2,17 +2,20 @@ import "./App.css";
 import ProtectRoute from "./utils/ProtectRoute";
 import Login from "./pages/auth/Login";
 import { Route, Routes } from "react-router-dom";
-import Index from "./pages/Index";
+import Index from "./pages/Index/Index";
+import Category from "./pages/admin/Category/Category";
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Index />}></Route>
-
         <Route element={<ProtectRoute role="null" />}>
-          //
           <Route path="/login" element={<Login />} exact />
+          <Route path="/" element={<Index />}></Route>
+        </Route>
+
+        <Route element={<ProtectRoute role="admin" />}>
+          <Route path="/admin/category" element={<Category />} exact />
         </Route>
 
         <Route element={<ProtectRoute role="null" />}></Route>

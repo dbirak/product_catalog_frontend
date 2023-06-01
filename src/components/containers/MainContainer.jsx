@@ -1,5 +1,5 @@
 const MainContainer = (props) => {
-  return <div className=" max-w-[1200px] p-5 bg-red-300">{props.children}</div>;
+  return <div className=" max-w-[1200px] p-5 mx-auto">{props.children}</div>;
 };
 
 export default MainContainer;

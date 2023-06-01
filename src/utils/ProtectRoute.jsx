@@ -2,14 +2,8 @@ import { Outlet, Navigate } from "react-router-dom";
 
 const ProtectRoute = (props) => {
   if (
-    props.role === "company" &&
-    localStorage.getItem("role") === "company" &&
-    localStorage.getItem("token")
-  )
-    return <Outlet />;
-  else if (
-    props.role === "user" &&
-    localStorage.getItem("role") === "user" &&
+    props.role === "admin" &&
+    localStorage.getItem("role") === "admin" &&
     localStorage.getItem("token")
   )
     return <Outlet />;
@@ -22,7 +16,9 @@ const ProtectRoute = (props) => {
   else if (props.role !== localStorage.getItem("role"));
   {
     //localStorage.clear();
-    return <Navigate to="/" />;
+    if (localStorage.getItem("role") === "admin")
+      return <Navigate to="/admin/category" />;
+    else return <Navigate to="/" />;
   }
 };
 
