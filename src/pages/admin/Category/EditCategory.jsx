@@ -1,12 +1,13 @@
 import { useForm } from "react-hook-form";
-import { useMutation } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { axiosWithBearer } from "../../../api/axios";
 import { useState } from "react";
 import Loading from "../../../components/loading/Loading";
 
-const AddCategory = (props) => {
-  const [isLoading, setIsLoading] = useState(false);
+const EditCategory = (props) => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [category, setCategory] = useState(null);
   const navigate = useNavigate();
   const {
     register,
@@ -18,11 +19,34 @@ const AddCategory = (props) => {
   const styleInputCorrect = "input input-bordered w-full";
   const styleInputError = styleInputCorrect + " input-error text-error";
 
-  const create = useMutation({
+  const getCategory = useQuery("getCategory", () => {
+    axiosWithBearer
+      .get("/category/" + props.idCategory)
+      .then((res) => {
+        setCategory(res.data);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        if (error.response.status == 401) {
+          localStorage.clear();
+          navigate("/");
+        } else if (error.response.status == 422) {
+          for (const validateField in error.response.data.errors) {
+            const validateMessage =
+              error.response.data.errors[validateField][0];
+
+            setError(validateField, { message: validateMessage });
+          }
+        } else console.log(error);
+      })
+      .finally(() => {});
+  });
+
+  const edit = useMutation({
     mutationFn: (data) => {
       setIsLoading(true);
       axiosWithBearer
-        .post("/category", data)
+        .put("/category/" + category.id, data)
         .then((res) => {
           props.reloadCategory();
         })
@@ -46,7 +70,7 @@ const AddCategory = (props) => {
   });
 
   const onSubmitHandler = (data) => {
-    create.mutate(data);
+    edit.mutate(data);
   };
 
   if (isLoading) return <Loading />;
@@ -54,12 +78,13 @@ const AddCategory = (props) => {
   return (
     <div>
       <h1 className=" text-[30px] mb-8 text-center font-semibold">
-        Dodaj nową kategorię
+        Edytuj kategorię
       </h1>
       <form onSubmit={handleSubmit(onSubmitHandler)}>
         <input
           type="text"
           placeholder="Nazwa kategorii"
+          defaultValue={category.name}
           className={errors.nazwa ? styleInputError : styleInputCorrect}
           {...register("nazwa", {
             required: "Pole nazwa jest wymagane.",
@@ -98,4 +123,4 @@ const AddCategory = (props) => {
   );
 };
 
-export default AddCategory;
+export default EditCategory;

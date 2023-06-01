@@ -8,9 +8,13 @@ import AddCategory from "./AddCategory";
 import { axiosWithBearer } from "../../../api/axios";
 import { useQuery } from "react-query";
 import SmallLoading from "../../../components/loading/SmallLoading";
+import EditCategory from "./EditCategory";
 
 const Category = () => {
-  const [isShowModal, setIsShowModal] = useState(false);
+  const [isShowModalAdd, setIsShowModalAdd] = useState(false);
+  const [isShowModalEdit, setIsShowModalEdit] = useState(false);
+  const [idCategory, setIdCategory] = useState(0);
+
   const [allCategories, setAllCategories] = useState(null);
 
   const getAllCategories = useQuery("getAllCategories", () => {
@@ -36,14 +40,21 @@ const Category = () => {
       .finally(() => {});
   });
 
-  const addCategory = () => {
+  const reloadCategory = () => {
     setAllCategories(null);
-    setIsShowModal(false);
+    setIsShowModalAdd(false);
+    setIsShowModalEdit(false);
     getAllCategories.refetch();
   };
 
+  const editCategory = (id) => {
+    setIdCategory(id);
+    setIsShowModalEdit(true);
+  };
+
   const closeModal = () => {
-    setIsShowModal(false);
+    setIsShowModalAdd(false);
+    setIsShowModalEdit(false);
   };
 
   return (
@@ -59,7 +70,7 @@ const Category = () => {
             <div className="w-[5%] mx-auto my-6 grid items-center">
               <button
                 className="btn btn-primary btn-square"
-                onClick={() => setIsShowModal(true)}
+                onClick={() => setIsShowModalAdd(true)}
               >
                 <GrAdd />
               </button>
@@ -77,14 +88,29 @@ const Category = () => {
                   number={index + 1}
                   id={item.id}
                   name={item.name}
+                  reloadCategory={reloadCategory}
+                  editCategory={editCategory}
                 />
               ))}
             </div>
           )}
 
-          {isShowModal && (
+          {isShowModalAdd && (
             <Modal>
-              <AddCategory addCategory={addCategory} closeModal={closeModal} />
+              <AddCategory
+                reloadCategory={reloadCategory}
+                closeModal={closeModal}
+              />
+            </Modal>
+          )}
+
+          {isShowModalEdit && (
+            <Modal>
+              <EditCategory
+                reloadCategory={reloadCategory}
+                closeModal={closeModal}
+                idCategory={idCategory}
+              />
             </Modal>
           )}
         </MainContainer>
