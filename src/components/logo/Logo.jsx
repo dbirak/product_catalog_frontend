@@ -5,7 +5,7 @@ const Logo = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="mx-auto py-5 bg-base-300">
+    <div className="mx-auto py-5 bg-base-300 h-[120px]">
       <img
         className="block mx-auto cursor-pointer"
         onClick={() => {

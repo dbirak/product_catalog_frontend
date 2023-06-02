@@ -25,6 +25,7 @@ const LoginForm = () => {
           localStorage.setItem("token", token);
           localStorage.setItem("role", "admin");
 
+          window.location.reload();
           navigate("/admin/category");
         })
         .catch((error) => {

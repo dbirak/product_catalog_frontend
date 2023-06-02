@@ -1,6 +1,13 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { axiosBase } from "../../api/axios";
+import { useQuery } from "react-query";
+import Loading from "../../components/loading/Loading";
 
-const SerachForm = () => {
+const SerachForm = (props) => {
+  const [category, setCategory] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -11,9 +18,41 @@ const SerachForm = () => {
   const styleInputCorrect = "input input-bordered w-full";
   const styleInputError = styleInputCorrect + " input-error text-error";
 
+  const styleInputCorrecSelect =
+    "select w-full font-normal text-[16px] input input-bordered";
+  const styleInputErrorSelect =
+    styleInputCorrecSelect + " input-error text-error";
+
+  const getCategory = useQuery("getCategory", () => {
+    axiosBase
+      .get("/category")
+      .then((res) => {
+        setCategory(res.data.data);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        if (error.response.status == 401) {
+          localStorage.clear();
+          navigate("/");
+        } else if (error.response.status == 422) {
+          for (const validateField in error.response.data.errors) {
+            const validateMessage =
+              error.response.data.errors[validateField][0];
+
+            setError(validateField, { message: validateMessage });
+          }
+        } else console.log(error);
+      })
+      .finally(() => {});
+  });
+
   const onSubmitHandler = async (data) => {
-    console.log(data);
+    data.kategoria = parseInt(data.kategoria);
+
+    props.serachProduct(data);
   };
+
+  if (category == null || isLoading) return <Loading />;
 
   return (
     <div>
@@ -33,29 +72,20 @@ const SerachForm = () => {
         </label>
 
         <select
-          className="select w-full font-normal text-[16px] input input-bordered"
-          defaultValue={"Województwo"}
+          className={
+            errors.kategoria ? styleInputErrorSelect : styleInputCorrecSelect
+          }
+          defaultValue={"Kategoria"}
           {...register("kategoria")}
         >
-          <option value="0" defaultValue>
+          <option key={0} value="0" defaultValue>
             Kategoria
           </option>
-          <option value="1">Dolnośląskie</option>
-          <option value="2">Kujawsko-Pomorskie</option>
-          <option value="3">Lubelskie</option>
-          <option value="4">Lubuskie</option>
-          <option value="5">Łódzkie</option>
-          <option value="6">Małopolskie</option>
-          <option value="7">Mazowieckie</option>
-          <option value="8">Opolskie</option>
-          <option value="9">Podkarpackie</option>
-          <option value="10">Podlaskie</option>
-          <option value="11">Pomorskie</option>
-          <option value="12">Śląskie</option>
-          <option value="13">Świętokrzyskie</option>
-          <option value="14">Warmińsko-Mazurskie</option>
-          <option value="15">Wielkopolskie</option>
-          <option value="16">Zachodniopomorskie</option>
+          {category.map((item) => (
+            <option key={item.id} value={item.id}>
+              {item.name}
+            </option>
+          ))}
         </select>
 
         <label className="label mb-5">

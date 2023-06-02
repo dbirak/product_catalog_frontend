@@ -1,4 +1,5 @@
 import MainContainer from "../../components/containers/MainContainer";
+import Footer from "../../components/footer/Footer";
 import Logo from "../../components/logo/Logo";
 import LoginForm from "./LoginForm";
 
@@ -12,6 +13,7 @@ const Login = () => {
             <LoginForm />
           </div>
         </MainContainer>
+        <Footer />
       </div>
     </div>
   );

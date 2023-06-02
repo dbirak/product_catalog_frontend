@@ -21,7 +21,7 @@ const Product = () => {
 
   const navigate = useNavigate();
 
-  const getProductPage = (page, method) => {
+  const getProductPage = (page, method, data) => {
     setAllProduct(null);
 
     if (method == "GET") {
@@ -30,7 +30,7 @@ const Product = () => {
         .then((res) => {
           setAllProduct(res.data);
 
-          setButtonsFromResponse(res);
+          setButtonsFromResponse(res, baseURL + "/product?page=", "GET");
         })
         .catch((error) => {
           if (error.response.status == 401) {
@@ -49,11 +49,15 @@ const Product = () => {
     }
     if (method == "POST") {
       axiosWithBearer
-        .post(page)
+        .post(page, data)
         .then((res) => {
           setAllProduct(res.data);
 
-          setButtonsFromResponse(res);
+          setButtonsFromResponse(
+            res,
+            baseURL + "/product/serach?page=",
+            "POST"
+          );
         })
         .catch((error) => {
           if (error.response.status == 401) {
@@ -72,7 +76,7 @@ const Product = () => {
     }
   };
 
-  const setButtonsFromResponse = (res, page, method) => {
+  const setButtonsFromResponse = (res, page, method, data) => {
     var buttons_style = "join-item btn btn-outline btn-outline";
     var buttons_style_current = "join-item btn btn-primary btn-active";
 
@@ -86,7 +90,7 @@ const Product = () => {
           key={i}
           className={style}
           onClick={() => {
-            getProductPage(page + i, method);
+            getProductPage(page + i, method, data);
           }}
         >
           {i}
@@ -129,7 +133,12 @@ const Product = () => {
       .then((res) => {
         setAllProduct(res.data);
 
-        setButtonsFromResponse(res, baseURL + "/product/serach?page=", "POST");
+        setButtonsFromResponse(
+          res,
+          baseURL + "/product/serach?page=",
+          "POST",
+          data
+        );
       })
       .catch((error) => {
         if (error.response.status == 401) {
@@ -195,7 +204,7 @@ const Product = () => {
               {allProduct.data.map((item, index) => (
                 <ProductItem
                   key={index + 1}
-                  number={index - 14 + allProduct.meta.current_page * 15}
+                  number={index - 17 + allProduct.meta.current_page * 18}
                   id={item.id}
                   name={item.name}
                   category={item.category.name}
@@ -206,7 +215,7 @@ const Product = () => {
                 />
               ))}
 
-              <div className="join mt-8">{paginationButtons}</div>
+              <div className="join mt-8 w-fit mx-auto">{paginationButtons}</div>
             </div>
           )}
 

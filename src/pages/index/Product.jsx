@@ -1,16 +1,33 @@
-const Product = () => {
+import { useNavigate } from "react-router-dom";
+import { imageURL } from "../../api/axios";
+
+const Product = (props) => {
+  const navigate = useNavigate();
+
+  const clickProduct = (id) => {
+    navigate("/product/" + id);
+  };
+
   return (
-    <div className="card w-[320px] mx-2 my-4 bg-base-400 shadow-xl cursor-pointer hover:scale-[1.05] hover:ease-in-out duration-300">
+    <div
+      className="card w-[320px] mx-2 my-4 bg-base-400 shadow-xl cursor-pointer hover:scale-[1.05] hover:ease-in-out duration-300"
+      onClick={() => {
+        clickProduct(props.id);
+      }}
+    >
       <figure>
         <img
-          className="w-[320px] h-[180px]"
-          src="https://marketplace.canva.com/EAE-xnqWvJk/1/0/1600w/canva-retro-smoke-and-round-light-desktop-wallpapers-JLofAI27pCg.jpg"
+          className="w-[300px] h-[205px] p-4"
+          src={imageURL + props.image}
           alt="Shoes"
         />
       </figure>
-      <div className="card-body">
-        <h2 className="card-title block mx-auto">asdasd</h2>
+      <div className="card-body p-5">
+        <h2 className="card-title block mx-auto font-semibold text-[26px]">
+          {props.name}
+        </h2>
       </div>
+      <h2 className="block mx-auto pb-4">{props.category}</h2>
     </div>
   );
 };
