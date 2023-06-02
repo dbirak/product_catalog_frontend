@@ -9,13 +9,16 @@ import { axiosWithBearer } from "../../../api/axios";
 import { useQuery } from "react-query";
 import SmallLoading from "../../../components/loading/SmallLoading";
 import EditCategory from "./EditCategory";
+import { useNavigate } from "react-router-dom";
 
 const Category = () => {
   const [isShowModalAdd, setIsShowModalAdd] = useState(false);
   const [isShowModalEdit, setIsShowModalEdit] = useState(false);
-  const [idCategory, setIdCategory] = useState(0);
 
+  const [idCategory, setIdCategory] = useState(0);
   const [allCategories, setAllCategories] = useState(null);
+
+  const navigate = useNavigate();
 
   const getAllCategories = useQuery("getAllCategories", () => {
     axiosWithBearer

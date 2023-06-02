@@ -4,6 +4,7 @@ import Login from "./pages/auth/Login";
 import { Route, Routes } from "react-router-dom";
 import Index from "./pages/Index/Index";
 import Category from "./pages/admin/Category/Category";
+import Product from "./pages/admin/Product/Product";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
 
         <Route element={<ProtectRoute role="admin" />}>
           <Route path="/admin/category" element={<Category />} exact />
+          <Route path="/admin/product" element={<Product />} exact />
         </Route>
 
         <Route element={<ProtectRoute role="null" />}></Route>

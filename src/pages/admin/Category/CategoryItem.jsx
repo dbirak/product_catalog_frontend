@@ -72,7 +72,7 @@ const CategoryItem = (props) => {
       <div className="w-[2%] text-right text-red-600">
         <span
           className="cursor-pointer"
-          onClick={() => deleteCategory(props.id, props.name)}
+          onClick={() => deleteCategory(props.id)}
         >
           <FaTrashAlt />
         </span>
