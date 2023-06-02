@@ -4,11 +4,12 @@ import Navbar from "../../../components/navbar/Navbar";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "react-query";
-import { axiosWithBearer } from "../../../api/axios";
+import { axiosWithBearer, baseURL } from "../../../api/axios";
 import ProductItem from "./ProductItem";
 import SmallLoading from "../../../components/loading/SmallLoading";
 import AddProduct from "./AddProduct";
 import Modal from "../../../components/modal/Modal";
+import SerachForm from "./SerachForm";
 
 const Product = () => {
   const [isShowModalAdd, setIsShowModalAdd] = useState(false);
@@ -20,34 +21,58 @@ const Product = () => {
 
   const navigate = useNavigate();
 
-  const getProductPage = (id) => {
-    console.log(id);
+  const getProductPage = (page, method) => {
     setAllProduct(null);
 
-    axiosWithBearer
-      .get("/product?page=" + id)
-      .then((res) => {
-        setAllProduct(res.data);
+    if (method == "GET") {
+      axiosWithBearer
+        .get(page)
+        .then((res) => {
+          setAllProduct(res.data);
 
-        setButtonsFromResponse(res);
-      })
-      .catch((error) => {
-        if (error.response.status == 401) {
-          localStorage.clear();
-          navigate("/");
-        } else if (error.response.status == 422) {
-          for (const validateField in error.response.data.errors) {
-            const validateMessage =
-              error.response.data.errors[validateField][0];
+          setButtonsFromResponse(res);
+        })
+        .catch((error) => {
+          if (error.response.status == 401) {
+            localStorage.clear();
+            navigate("/");
+          } else if (error.response.status == 422) {
+            for (const validateField in error.response.data.errors) {
+              const validateMessage =
+                error.response.data.errors[validateField][0];
 
-            setError(validateField, { message: validateMessage });
-          }
-        } else console.log(error);
-      })
-      .finally(() => {});
+              setError(validateField, { message: validateMessage });
+            }
+          } else console.log(error);
+        })
+        .finally(() => {});
+    }
+    if (method == "POST") {
+      axiosWithBearer
+        .post(page)
+        .then((res) => {
+          setAllProduct(res.data);
+
+          setButtonsFromResponse(res);
+        })
+        .catch((error) => {
+          if (error.response.status == 401) {
+            localStorage.clear();
+            navigate("/");
+          } else if (error.response.status == 422) {
+            for (const validateField in error.response.data.errors) {
+              const validateMessage =
+                error.response.data.errors[validateField][0];
+
+              setError(validateField, { message: validateMessage });
+            }
+          } else console.log(error);
+        })
+        .finally(() => {});
+    }
   };
 
-  const setButtonsFromResponse = (res) => {
+  const setButtonsFromResponse = (res, page, method) => {
     var buttons_style = "join-item btn btn-outline btn-outline";
     var buttons_style_current = "join-item btn btn-primary btn-active";
 
@@ -61,7 +86,7 @@ const Product = () => {
           key={i}
           className={style}
           onClick={() => {
-            getProductPage(i);
+            getProductPage(page + i, method);
           }}
         >
           {i}
@@ -78,7 +103,7 @@ const Product = () => {
       .then((res) => {
         setAllProduct(res.data);
 
-        setButtonsFromResponse(res);
+        setButtonsFromResponse(res, baseURL + "/product?page=", "GET");
       })
       .catch((error) => {
         if (error.response.status == 401) {
@@ -95,6 +120,32 @@ const Product = () => {
       })
       .finally(() => {});
   });
+
+  const serachProduct = (data) => {
+    setAllProduct(null);
+
+    axiosWithBearer
+      .post("/product/serach", data)
+      .then((res) => {
+        setAllProduct(res.data);
+
+        setButtonsFromResponse(res, baseURL + "/product/serach?page=", "POST");
+      })
+      .catch((error) => {
+        if (error.response.status == 401) {
+          localStorage.clear();
+          navigate("/");
+        } else if (error.response.status == 422) {
+          for (const validateField in error.response.data.errors) {
+            const validateMessage =
+              error.response.data.errors[validateField][0];
+
+            setError(validateField, { message: validateMessage });
+          }
+        } else console.log(error);
+      })
+      .finally(() => {});
+  };
 
   const reloadProduct = () => {
     setAllProduct(null);
@@ -132,18 +183,24 @@ const Product = () => {
               </button>
             </div>
           </div>
+          <div className="mb-5">
+            <SerachForm serachProduct={serachProduct} />
+          </div>
           {allProduct === null ? (
             <SmallLoading />
-          ) : allProduct.length === 0 ? (
+          ) : allProduct.data.length === 0 ? (
             <p className="block text-center w-full">Brak produktów</p>
           ) : (
             <div>
               {allProduct.data.map((item, index) => (
                 <ProductItem
                   key={index + 1}
-                  number={index - 1 + allProduct.meta.current_page * 2}
+                  number={index - 14 + allProduct.meta.current_page * 15}
                   id={item.id}
                   name={item.name}
+                  category={item.category.name}
+                  image={item.image_name}
+                  pdf={item.pdf_name}
                   reloadProduct={reloadProduct}
                   editProduct={editProduct}
                 />

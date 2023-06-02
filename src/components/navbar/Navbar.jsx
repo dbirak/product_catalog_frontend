@@ -21,7 +21,7 @@ const Navbar = (props) => {
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col">
         <div className="w-full navbar bg-base-300 fixed">
-          <div className="flex-none lg:hidden">
+          <div className="flex-none 2xl:hidden">
             <label htmlFor="my-drawer-3" className="btn btn-square btn-ghost">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -47,7 +47,7 @@ const Navbar = (props) => {
           </div>
         </div>
         <div>
-          <ul className="menu bg-base-300 hidden lg:flex fixed h-[calc(100vh-0px)] w-56 p-2">
+          <ul className="menu bg-base-300 hidden 2xl:flex fixed h-[calc(100vh-0px)] w-56 p-2">
             <li>
               <a
                 className={props.value == "kategorie" ? "active" : ""}

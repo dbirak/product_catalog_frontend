@@ -29,8 +29,8 @@ const Category = () => {
       })
       .catch((error) => {
         if (error.response.status == 401) {
-          localStorage.clear();
-          navigate("/");
+          // localStorage.clear();
+          // navigate("/");
         } else if (error.response.status == 422) {
           for (const validateField in error.response.data.errors) {
             const validateMessage =
@@ -82,7 +82,9 @@ const Category = () => {
           {allCategories === null ? (
             <SmallLoading />
           ) : allCategories.length === 0 ? (
-            <p className="block text-center w-full">Brak kategorii</p>
+            <p className="block text-center w-full font-semibold mt-5">
+              Brak kategorii
+            </p>
           ) : (
             <div>
               {allCategories.map((item, index) => (

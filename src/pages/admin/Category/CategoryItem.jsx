@@ -24,15 +24,15 @@ const CategoryItem = (props) => {
           } else if (error.response.status == 409) {
             Swal.fire({
               icon: "error",
-              title: "Błąd usunięcia",
+              title: "Błąd usuwania",
               text: "Nie można usunąć kategorii, ponieważ istnieją produkty należące do tej kategorii!",
             });
           } else {
             console.log(error);
             Swal.fire({
               icon: "error",
-              title: "Błąd usunięcia",
-              text: "Wystąpił błąd usunięcia kategorii!",
+              title: "Błąd usuwania",
+              text: "Wystąpił błąd podczas usuwania kategorii!",
             });
           }
         });
@@ -65,16 +65,19 @@ const CategoryItem = (props) => {
         {props.name}
       </div>
       <div className="w-[4%] text-right text-blue-600">
-        <span className="cursor-pointer" onClick={() => editCategory(props.id)}>
-          <BiEdit />
+        <span>
+          <BiEdit
+            className="cursor-pointer"
+            onClick={() => editCategory(props.id)}
+          />
         </span>
       </div>
       <div className="w-[2%] text-right text-red-600">
-        <span
-          className="cursor-pointer"
-          onClick={() => deleteCategory(props.id)}
-        >
-          <FaTrashAlt />
+        <span>
+          <FaTrashAlt
+            className="cursor-pointer"
+            onClick={() => deleteCategory(props.id, props.name)}
+          />
         </span>
       </div>
     </div>
