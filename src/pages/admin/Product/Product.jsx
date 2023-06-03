@@ -10,6 +10,7 @@ import SmallLoading from "../../../components/loading/SmallLoading";
 import AddProduct from "./AddProduct";
 import Modal from "../../../components/modal/Modal";
 import SerachForm from "./SerachForm";
+import EditProduct from "./EditProduct";
 
 const Product = () => {
   const [isShowModalAdd, setIsShowModalAdd] = useState(false);
@@ -224,6 +225,16 @@ const Product = () => {
               <AddProduct
                 reloadProduct={reloadProduct}
                 closeModal={closeModal}
+              />
+            </Modal>
+          )}
+
+          {isShowModalEdit && (
+            <Modal>
+              <EditProduct
+                reloadProduct={reloadProduct}
+                closeModal={closeModal}
+                id={idProduct}
               />
             </Modal>
           )}

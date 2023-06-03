@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { axiosWithBearer } from "../../../api/axios";
 import { useState } from "react";
 import Loading from "../../../components/loading/Loading";
+import Swal from "sweetalert2";
 
 const EditCategory = (props) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -48,6 +49,11 @@ const EditCategory = (props) => {
       axiosWithBearer
         .put("/category/" + category.id, data)
         .then((res) => {
+          Swal.fire({
+            icon: "success",
+            title: "Sukces",
+            text: "Wybrana kategoria została zaaktualizowana!",
+          });
           props.reloadCategory();
         })
         .catch((error) => {
@@ -106,7 +112,7 @@ const EditCategory = (props) => {
           <input
             className="btn btn-primary block"
             type="submit"
-            value="Dodaj"
+            value="Edytuj"
           />
           <button
             type="button"

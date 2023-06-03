@@ -1,7 +1,7 @@
 import "./App.css";
 import ProtectRoute from "./utils/ProtectRoute";
 import Login from "./pages/auth/Login";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import Category from "./pages/admin/Category/Category";
 import Product from "./pages/admin/Product/Product";
 import Setting from "./pages/admin/Setting/Setting";
@@ -26,14 +26,7 @@ function App() {
 
         <Route element={<ProtectRoute role="null" />}></Route>
 
-        <Route
-          path="*"
-          element={
-            <p className="mt-10 text-center text-[30px]">
-              Błąd 404 - Nie znaleziono podanego adresu
-            </p>
-          }
-        />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </div>
   );

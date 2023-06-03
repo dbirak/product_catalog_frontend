@@ -5,11 +5,11 @@ import { FaFilePdf, FaTrashAlt } from "react-icons/fa";
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { axiosWithBearer, imageURL, pdfURL } from "../../../api/axios";
+import { axiosWithBearer, baseURL, imageURL } from "../../../api/axios";
 
 const ProductItem = (props) => {
   const editProduct = (id) => {
-    console.log(id);
+    props.editProduct(id);
   };
 
   const delProduct = useMutation({
@@ -56,7 +56,7 @@ const ProductItem = (props) => {
   };
 
   const getPdf = (name, productName) => {
-    fetch(pdfURL + name, {
+    fetch(baseURL + "/file/" + name, {
       method: "GET",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),

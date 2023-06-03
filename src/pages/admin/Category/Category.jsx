@@ -25,7 +25,6 @@ const Category = () => {
       .get("/category")
       .then((res) => {
         setAllCategories(res.data.data);
-        console.log(res.data);
       })
       .catch((error) => {
         if (error.response.status == 401) {
@@ -82,9 +81,7 @@ const Category = () => {
           {allCategories === null ? (
             <SmallLoading />
           ) : allCategories.length === 0 ? (
-            <p className="block text-center w-full font-semibold mt-5">
-              Brak kategorii
-            </p>
+            <p className="block text-center w-full mt-2">Brak kategorii</p>
           ) : (
             <div>
               {allCategories.map((item, index) => (

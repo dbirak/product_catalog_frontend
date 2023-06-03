@@ -79,7 +79,7 @@ const SerachForm = (props) => {
           {...register("kategoria")}
         >
           <option key={0} value="0" defaultValue>
-            Kategoria
+            Wszystkie kategorie
           </option>
           {category.map((item) => (
             <option key={item.id} value={item.id}>

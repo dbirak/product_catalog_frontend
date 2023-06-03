@@ -2,8 +2,12 @@ import { useMutation } from "react-query";
 import { axiosBase } from "../../api/axios";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
+import Loading from "../../components/loading/Loading";
 
 const LoginForm = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const navigate = useNavigate();
   const {
     register,
@@ -17,6 +21,8 @@ const LoginForm = () => {
 
   const login = useMutation({
     mutationFn: (data) => {
+      setIsLoading(true);
+
       axiosBase
         .post("/auth/login", data)
         .then((res) => {
@@ -42,7 +48,7 @@ const LoginForm = () => {
           } else console.log(error);
         })
         .finally(() => {
-          //setIsLoading(false);
+          setIsLoading(false);
         });
     },
   });
@@ -50,8 +56,11 @@ const LoginForm = () => {
   const onSubmitHandler = (data) => {
     login.mutate(data);
   };
+
   return (
     <div>
+      {isLoading && <Loading />}
+
       <h1 className="my-6 text-[40px] text-center font-semibold ">Logowanie</h1>
       <form onSubmit={handleSubmit(onSubmitHandler)} className="w-1/2 mx-auto">
         <input
