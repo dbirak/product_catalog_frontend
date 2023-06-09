@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
-import { axiosWithBearer } from "../../../api/axios";
+import { axiosWithBearer } from "../../../api/Axios";
 import { useState } from "react";
 import Loading from "../../../components/loading/Loading";
 

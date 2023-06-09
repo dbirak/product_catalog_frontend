@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { axiosWithBearer } from "../../../api/axios";
+import { axiosWithBearer } from "../../../api/Axios";
 import { useMutation, useQuery } from "react-query";
 import { useState } from "react";
 import Loading from "../../../components/loading/Loading";
@@ -56,7 +56,10 @@ const SerachForm = (props) => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit(onSubmitHandler)} className="w-1/2 mx-auto">
+      <form
+        onSubmit={handleSubmit(onSubmitHandler)}
+        className="max-w-lg mx-auto"
+      >
         <input
           type="text"
           placeholder="Wpisz nazwę produktu"

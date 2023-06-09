@@ -5,7 +5,7 @@ import { FaFilePdf, FaTrashAlt } from "react-icons/fa";
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { axiosWithBearer, baseURL, imageURL } from "../../../api/axios";
+import { axiosWithBearer, baseURL, imageURL } from "../../../api/Axios";
 
 const ProductItem = (props) => {
   const editProduct = (id) => {
@@ -79,17 +79,17 @@ const ProductItem = (props) => {
         <span className=" font-semibold mr-3">{props.number}.</span>{" "}
         {props.name}
       </div>
-      <div className="w-[31%] font-semibold">{props.category}</div>
-      <div className="w-[20%]">
+      <div className="w-[26%] font-semibold">{props.category}</div>
+      <div className="w-[24%]">
         <img src={imageURL + props.image} className="h-[50px] w-[73px]" />
       </div>
-      <div className="w-[10%] text-orange-700">
+      <div className="w-[7%] text-orange-700">
         <FaFilePdf
           className="cursor-pointer"
           onClick={() => getPdf(props.pdf, props.name)}
         />
       </div>
-      <div className="w-[4%] text-right text-blue-600">
+      <div className="w-[7%] text-right text-blue-600">
         <span>
           <BiEdit
             className="cursor-pointer"

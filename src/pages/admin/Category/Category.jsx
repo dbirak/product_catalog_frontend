@@ -5,7 +5,7 @@ import CategoryItem from "./CategoryItem";
 import Modal from "../../../components/modal/Modal";
 import { useState } from "react";
 import AddCategory from "./AddCategory";
-import { axiosWithBearer } from "../../../api/axios";
+import { axiosWithBearer } from "../../../api/Axios";
 import { useQuery } from "react-query";
 import SmallLoading from "../../../components/loading/SmallLoading";
 import EditCategory from "./EditCategory";
@@ -64,12 +64,12 @@ const Category = () => {
       <Navbar value="kategorie">
         <MainContainer>
           <div className="mt-10 flex justify-between w-auto">
-            <div className="w-[95%] my-6">
+            <div className="w-full my-6">
               <h1 className="text-[35px] text-center font-semibold ">
                 Kategorie
               </h1>
             </div>
-            <div className="w-[5%] mx-auto my-6 grid items-center">
+            <div className="my-6 grid items-center">
               <button
                 className="btn btn-primary btn-square"
                 onClick={() => setIsShowModalAdd(true)}

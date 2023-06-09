@@ -1,5 +1,5 @@
 import { useMutation } from "react-query";
-import { axiosBase } from "../../api/axios";
+import { axiosBase } from "../../api/Axios";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
@@ -62,7 +62,10 @@ const LoginForm = () => {
       {isLoading && <Loading />}
 
       <h1 className="my-6 text-[40px] text-center font-semibold ">Logowanie</h1>
-      <form onSubmit={handleSubmit(onSubmitHandler)} className="w-1/2 mx-auto">
+      <form
+        onSubmit={handleSubmit(onSubmitHandler)}
+        className="max-w-lg mx-auto"
+      >
         <input
           type="text"
           placeholder="Adres e-mail"

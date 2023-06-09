@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { axiosBase, baseURL, imageURL } from "../../api/axios";
+import { axiosBase, baseURL, imageURL } from "../../api/Axios";
 import { useState } from "react";
 import { useQuery } from "react-query";
 import MainContainer from "../../components/containers/MainContainer";
@@ -63,7 +63,7 @@ const ProductItem = () => {
             </h1>
             <div className="mx-auto w-fit mt-12">
               <img
-                className="w-[480px] h-[328px] p-4"
+                className="w-[430px] h-[294px] p-4"
                 src={imageURL + product.image_name}
                 alt=""
               />

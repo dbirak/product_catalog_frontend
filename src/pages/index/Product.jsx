@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { imageURL } from "../../api/axios";
+import { imageURL } from "../../api/Axios";
 
 const Product = (props) => {
   const navigate = useNavigate();

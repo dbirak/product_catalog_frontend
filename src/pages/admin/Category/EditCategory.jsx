@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
-import { axiosWithBearer } from "../../../api/axios";
+import { axiosWithBearer } from "../../../api/Axios";
 import { useState } from "react";
 import Loading from "../../../components/loading/Loading";
 import Swal from "sweetalert2";

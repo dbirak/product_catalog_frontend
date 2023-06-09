@@ -4,7 +4,7 @@ import Product from "./Product";
 import Logo from "../../components/logo/Logo";
 import { useState } from "react";
 import { useQuery } from "react-query";
-import { axiosBase, baseURL } from "../../api/axios";
+import { axiosBase, baseURL } from "../../api/Axios";
 import SmallLoading from "../../components/loading/SmallLoading";
 import Footer from "../../components/footer/Footer";
 

@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import MainContainer from "../../../components/containers/MainContainer";
 import Navbar from "../../../components/navbar/Navbar";
-import { axiosWithBearer } from "../../../api/axios";
+import { axiosWithBearer } from "../../../api/Axios";
 import { useMutation } from "react-query";
 import Swal from "sweetalert2";
 import Loading from "../../../components/loading/Loading";
@@ -90,7 +90,7 @@ const Setting = () => {
           <div>
             <form
               onSubmit={handleSubmit(onSubmitHandler)}
-              className="w-1/2 mx-auto"
+              className="max-w-lg mx-auto"
             >
               <input
                 type="password"

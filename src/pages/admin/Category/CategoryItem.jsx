@@ -1,7 +1,7 @@
 import { FaTrashAlt } from "react-icons/fa";
 import { BiEdit } from "react-icons/bi";
 import { useMutation } from "react-query";
-import { axiosWithBearer } from "../../../api/axios";
+import { axiosWithBearer } from "../../../api/Axios";
 import Swal from "sweetalert2";
 
 const CategoryItem = (props) => {
@@ -60,11 +60,11 @@ const CategoryItem = (props) => {
 
   return (
     <div className="bg-base-300 p-4 flex items-center">
-      <div className="w-[94%]">
+      <div className="w-[92%]">
         <span className=" font-semibold mr-3">{props.number}.</span>{" "}
         {props.name}
       </div>
-      <div className="w-[4%] text-right text-blue-600">
+      <div className="w-[7%] text-right text-blue-600">
         <span>
           <BiEdit
             className="cursor-pointer"
@@ -72,7 +72,7 @@ const CategoryItem = (props) => {
           />
         </span>
       </div>
-      <div className="w-[2%] text-right text-red-600">
+      <div className="w-[7%] text-right text-red-600">
         <span>
           <FaTrashAlt
             className="cursor-pointer"
