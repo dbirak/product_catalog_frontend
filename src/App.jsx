@@ -7,6 +7,7 @@ import Product from "./pages/admin/Product/Product";
 import Setting from "./pages/admin/Setting/Setting";
 import Index from "./pages/index/Index";
 import ProductItem from "./pages/Product/ProductItem";
+import ResetPasswordForm from "./pages/auth/resetPassword/ResetPasswordForm";
 
 function App() {
   return (
@@ -14,6 +15,11 @@ function App() {
       <Routes>
         <Route element={<ProtectRoute role="null" />}>
           <Route path="/login" element={<Login />} exact />
+          <Route
+            path="/reset-password/:token"
+            element={<ResetPasswordForm />}
+            exact
+          />
           <Route path="/" element={<Index />}></Route>
           <Route path="/product/:id" element={<ProductItem />}></Route>
         </Route>
