@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { axiosBase, baseURL, imageURL } from "../../api/Axios";
+import { axiosBase, baseURL, imageURL, pdfURL } from "../../api/Axios";
 import { useState } from "react";
 import { useQuery } from "react-query";
 import MainContainer from "../../components/containers/MainContainer";
@@ -63,7 +63,7 @@ const ProductItem = () => {
             </h1>
             <div className="mx-auto w-fit mt-12">
               <img
-                className="w-[430px] h-[294px] p-4"
+                className="w-[430px] h-[294px] object-contain p-4"
                 src={imageURL + product.image_name}
                 alt=""
               />
@@ -72,26 +72,23 @@ const ProductItem = () => {
               <div>{product.category.name}</div>
             </div>
             <div className="md:flex md:justify-between block">
-              <div className="w-[100%] md:w-[48%] h-[350px] bg-base-300 mt-10">
-                <h1 className="text-center text-[25px] text-semibold my-4">
-                  Kod QR
+              <div className="w-[100%] md:w-[48%] min-h-[350px] bg-base-300 mt-10">
+                <h1 className="text-center text-[25px] font-semibold my-4">
+                  Opis
                 </h1>
-                <QRCode
-                  className="mx-auto"
-                  size={256}
-                  value={product.code_qr}
-                  viewBox={`0 0 256 256`}
-                />
+                <div className="p-5 text-justify">{product.code_qr}</div>
               </div>
               <div className="w-[100%] md:w-[48%] bg-base-300 h-[350px] mt-10">
-                <h1 className="text-center text-[25px] text-semibold my-4">
+                <h1 className="text-center text-[25px] font-semibold my-4">
                   Plik PDF
                 </h1>
                 <div className="mx-auto text-[165px] w-fit mt-[50px] text-red-500">
-                  <FaFilePdf
-                    onClick={() => getPdf(product.pdf_name, product.name)}
-                    className="cursor-pointer hover:text-red-600 ease-in-out duration-300 hover:scale-[1.05]"
-                  />
+                  <a href={pdfURL + product.pdf_name} target="_blank">
+                    <FaFilePdf
+                      // onClick={() => getPdf(product.pdf_name, product.name)}
+                      className="cursor-pointer hover:text-red-600 ease-in-out duration-300 hover:scale-[1.05]"
+                    />
+                  </a>
                 </div>
               </div>
             </div>

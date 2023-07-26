@@ -101,7 +101,7 @@ const SerachForm = (props) => {
 
         <div className="w-[150px] mx-auto">
           <input
-            className="btn btn-primary w-[150px]"
+            className="btn btn-primary text-white w-[150px]"
             type="submit"
             value="Szukaj"
           />

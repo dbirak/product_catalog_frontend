@@ -110,7 +110,7 @@ const EditCategory = (props) => {
 
         <div className="w-full mx-auto mt-3 flex justify-around">
           <input
-            className="btn btn-primary block"
+            className="btn btn-primary text-white block"
             type="submit"
             value="Edytuj"
           />

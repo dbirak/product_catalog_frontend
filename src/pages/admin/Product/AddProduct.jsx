@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
-import { axiosWithBearer, axiosWithBearerFormData } from "../../../api/axios";
 import { useState } from "react";
 import Loading from "../../../components/loading/Loading";
+import { axiosWithBearer, axiosWithBearerFormData } from "../../../api/Axios";
 
 const AddProduct = (props) => {
   const [category, setCategory] = useState(null);
@@ -118,16 +118,16 @@ const AddProduct = (props) => {
 
         <input
           type="text"
-          placeholder="Kod qr"
-          className={errors.kod ? styleInputError : styleInputCorrect}
-          {...register("kod", {
-            required: "Pole kod qr jest wymagane.",
+          placeholder="Opis"
+          className={errors.opis ? styleInputError : styleInputCorrect}
+          {...register("opis", {
+            required: "Pole opis jest wymagane.",
           })}
         />
         <label className="label mb-5">
-          {errors.kod && (
+          {errors.opis && (
             <span className="label-text-alt text-error text-[13px]">
-              {errors.kod.message}
+              {errors.opis.message}
             </span>
           )}
         </label>
@@ -210,7 +210,7 @@ const AddProduct = (props) => {
 
         <div className="w-full mx-auto mt-3 flex justify-around">
           <input
-            className="btn btn-primary block"
+            className="btn btn-primary block text-white"
             type="submit"
             value="Dodaj"
           />

@@ -2,8 +2,9 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 //Config url's to backend server
-export const baseURL = "http://localhost:8000/api";
-export const imageURL = "http://localhost:8000/storage/images/";
+export const baseURL = "https://api.kmgrom.dd1test.pl/api";
+export const imageURL = "https://api.kmgrom.dd1test.pl/storage/images/";
+export const pdfURL = "https://api.kmgrom.dd1test.pl/storage/pdf/";
 
 export const axiosBase = axios.create({
   baseURL: baseURL,

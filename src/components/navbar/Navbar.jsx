@@ -50,7 +50,9 @@ const Navbar = (props) => {
           <ul className="menu bg-base-300 hidden 2xl:flex fixed h-[calc(100vh-0px)] w-56 p-2">
             <li>
               <a
-                className={props.value == "kategorie" ? "active" : ""}
+                className={
+                  props.value == "kategorie" ? "active text-white" : ""
+                }
                 onClick={() => navbarClick("kategorie")}
               >
                 <BiCategory />
@@ -59,7 +61,7 @@ const Navbar = (props) => {
             </li>
             <li>
               <a
-                className={props.value == "produkty" ? "active" : ""}
+                className={props.value == "produkty" ? "active text-white" : ""}
                 onClick={() => navbarClick("produkty")}
               >
                 <BiPencil />
@@ -68,7 +70,9 @@ const Navbar = (props) => {
             </li>
             <li>
               <a
-                className={props.value == "ustawienia" ? "active" : ""}
+                className={
+                  props.value == "ustawienia" ? "active text-white" : ""
+                }
                 onClick={() => navbarClick("ustawienia")}
               >
                 <FiSettings />
@@ -90,7 +94,7 @@ const Navbar = (props) => {
         <ul className="menu bg-base-100 w-56 p-2">
           <li>
             <a
-              className={props.value == "kategorie" ? "active" : ""}
+              className={props.value == "kategorie" ? "active text-white" : ""}
               onClick={() => navbarClick("kategorie")}
             >
               <BiCategory />
@@ -99,7 +103,7 @@ const Navbar = (props) => {
           </li>
           <li>
             <a
-              className={props.value == "produkty" ? "active" : ""}
+              className={props.value == "produkty" ? "active text-white" : ""}
               onClick={() => navbarClick("produkty")}
             >
               <BiPencil />
@@ -108,7 +112,7 @@ const Navbar = (props) => {
           </li>
           <li>
             <a
-              className={props.value == "ustawienia" ? "active" : ""}
+              className={props.value == "ustawienia" ? "active text-white" : ""}
               onClick={() => navbarClick("ustawienia")}
             >
               <FiSettings />

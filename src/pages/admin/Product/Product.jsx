@@ -57,7 +57,8 @@ const Product = () => {
           setButtonsFromResponse(
             res,
             baseURL + "/product/serach?page=",
-            "POST"
+            "POST",
+            data
           );
         })
         .catch((error) => {
@@ -78,8 +79,10 @@ const Product = () => {
   };
 
   const setButtonsFromResponse = (res, page, method, data) => {
-    var buttons_style = "join-item btn btn-outline btn-outline";
-    var buttons_style_current = "join-item btn btn-primary btn-active";
+    var buttons_style =
+      "join-item btn btn-outline btn-outline m-1 w-[48px] h-[48px]";
+    var buttons_style_current =
+      "join-item btn btn-primary btn-active text-white m-1 w-[48px] h-[48px]";
 
     var buttons = [];
     for (let i = 1; i <= res.data.meta.last_page; i++) {
@@ -186,7 +189,7 @@ const Product = () => {
             </div>
             <div className="my-6 grid items-center">
               <button
-                className="btn btn-primary btn-square"
+                className="btn btn-primary btn-square text-white "
                 onClick={() => setIsShowModalAdd(true)}
               >
                 <GrAdd />

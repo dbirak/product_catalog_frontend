@@ -24,14 +24,14 @@ module.exports = {
       // },
       {
         light: {
-          primary: "#38bdf8",
+          primary: "#ca000c",
           secondary: "#818CF8",
-          accent: "#F471B5",
+          accent: "#ca000c",
           neutral: "#021431",
           "base-100": "#ffffff",
           "base-200": "#F2F7FF",
-          "base-300": "#E3E9F4",
-          "base-content": "#394E6A",
+          "base-300": "#f6f6f6",
+          "base-content": "#777777",
           info: "#0CA5E9",
           success: "#2DD4BF",
           warning: "#F4BF50",

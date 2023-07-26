@@ -1,10 +1,10 @@
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
-import { axiosWithBearer, axiosWithBearerFormData } from "../../../api/axios";
 import { useState } from "react";
 import Loading from "../../../components/loading/Loading";
 import Swal from "sweetalert2";
+import { axiosWithBearer, axiosWithBearerFormData } from "../../../api/Axios";
 
 const EditProduct = (props) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -163,17 +163,16 @@ const EditProduct = (props) => {
 
         <input
           type="text"
-          placeholder="Kod qr"
-          defaultValue={product.code_qr}
-          className={errors.kod ? styleInputError : styleInputCorrect}
-          {...register("kod", {
-            required: "Pole kod qr jest wymagane.",
+          placeholder="Opis"
+          className={errors.opis ? styleInputError : styleInputCorrect}
+          {...register("opis", {
+            required: "Pole opis jest wymagane.",
           })}
         />
         <label className="label mb-5">
-          {errors.kod && (
+          {errors.opis && (
             <span className="label-text-alt text-error text-[13px]">
-              {errors.kod.message}
+              {errors.opis.message}
             </span>
           )}
         </label>
@@ -250,7 +249,7 @@ const EditProduct = (props) => {
 
         <div className="w-full mx-auto mt-3 flex justify-around">
           <input
-            className="btn btn-primary block"
+            className="btn btn-primary text-white block"
             type="submit"
             value="Edytuj"
           />

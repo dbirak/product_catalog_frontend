@@ -104,7 +104,7 @@ const LoginForm = () => {
 
         <div className="w-[150px] mx-auto mt-3">
           <input
-            className="btn btn-primary w-[150px]"
+            className="btn btn-primary text-white w-[150px]"
             type="submit"
             value="Zaloguj się"
           />

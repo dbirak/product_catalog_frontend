@@ -17,7 +17,7 @@ const Product = (props) => {
     >
       <figure>
         <img
-          className="w-[300px] h-[205px] p-4"
+          className="w-[300px] h-[205px] p-4 object-contain"
           src={imageURL + props.image}
           alt="Shoes"
         />

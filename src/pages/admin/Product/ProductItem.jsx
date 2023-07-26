@@ -81,7 +81,10 @@ const ProductItem = (props) => {
       </div>
       <div className="w-[26%] font-semibold">{props.category}</div>
       <div className="w-[24%]">
-        <img src={imageURL + props.image} className="h-[50px] w-[73px]" />
+        <img
+          src={imageURL + props.image}
+          className="h-[50px] w-[73px] object-contain"
+        />
       </div>
       <div className="w-[7%] text-orange-700">
         <FaFilePdf

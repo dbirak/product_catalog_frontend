@@ -37,7 +37,8 @@ const Index = () => {
           setButtonsFromResponse(
             res,
             baseURL + "/product/serach?page=",
-            "POST"
+            "POST",
+            data
           );
         })
         .catch((error) => {
@@ -48,8 +49,10 @@ const Index = () => {
   };
 
   const setButtonsFromResponse = (res, page, method, data) => {
-    var buttons_style = "join-item btn btn-outline btn-outline";
-    var buttons_style_current = "join-item btn btn-primary btn-active";
+    var buttons_style =
+      "join-item btn btn-outline btn-outline m-1 w-[48px] h-[48px]";
+    var buttons_style_current =
+      "join-item btn btn-primary btn-active text-white m-1 w-[48px] h-[48px]";
 
     var buttons = [];
     for (let i = 1; i <= res.data.meta.last_page; i++) {
