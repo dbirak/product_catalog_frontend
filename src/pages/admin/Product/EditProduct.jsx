@@ -122,7 +122,7 @@ const EditProduct = (props) => {
     const formData = new FormData();
 
     formData.append("nazwa", data.nazwa);
-    formData.append("kod", data.kod);
+    formData.append("opis", data.opis);
     formData.append("kategoria", data.kategoria);
 
     if (data.zdjęcie[0]) {
@@ -164,6 +164,7 @@ const EditProduct = (props) => {
         <input
           type="text"
           placeholder="Opis"
+          defaultValue={product.code_qr}
           className={errors.opis ? styleInputError : styleInputCorrect}
           {...register("opis", {
             required: "Pole opis jest wymagane.",

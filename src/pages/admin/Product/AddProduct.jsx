@@ -84,7 +84,7 @@ const AddProduct = (props) => {
     const formData = new FormData();
 
     formData.append("nazwa", data.nazwa);
-    formData.append("kod", data.kod);
+    formData.append("opis", data.opis);
     formData.append("kategoria", data.kategoria);
     formData.append("zdjęcie", data.zdjęcie[0]);
     formData.append("pdf", data.pdf[0]);
